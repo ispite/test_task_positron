@@ -1,7 +1,8 @@
-package ru.skillbox.testtaskpositron
+package ru.skillbox.testtaskpositron.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.skillbox.testtaskpositron.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

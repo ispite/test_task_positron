@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Test Task Positron</string>
+    <string name="move_to_catalog">Перейти в каталог</string>
+    <string name="vendorCode">Артикул:</string>
 </resources>
