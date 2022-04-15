@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_goods.*
+import kotlinx.coroutines.delay
 import ru.skillbox.testtaskpositron.R
 import ru.skillbox.testtaskpositron.utils.autoCleared
 
@@ -23,8 +24,9 @@ class ListGoodsFragment:Fragment(R.layout.fragment_list_goods) {
     }
 
     private fun initList() {
-        productsAdapter = ListGoodsAdapter {
-            val action = ListGoodsFragmentDirections.actionListGoodsFragmentToDetailsProductFragment()
+        productsAdapter = ListGoodsAdapter { vendorCode, title, price, pictureLink  ->
+            Thread.sleep(300) //This is only for display ripple effect
+            val action = ListGoodsFragmentDirections.actionListGoodsFragmentToDetailsProductFragment(vendorCode, title, price, pictureLink)
             findNavController().navigate(action)
         }
         with(listGoodsRecyclerView) {

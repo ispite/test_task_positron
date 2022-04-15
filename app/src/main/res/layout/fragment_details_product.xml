@@ -35,6 +35,7 @@
         tools:text="1234.00 рублей" />
 
     <TextView
+        android:id="@+id/vendorCodeProductTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingStart="10dp"

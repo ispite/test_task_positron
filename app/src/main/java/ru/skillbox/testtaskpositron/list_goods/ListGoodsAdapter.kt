@@ -12,7 +12,7 @@ import ru.skillbox.testtaskpositron.R
 import ru.skillbox.testtaskpositron.data.Product
 
 class ListGoodsAdapter(
-    private val onItemClick: (gcode: Long) -> Unit
+    private val onItemClick: (gcode: Long, title: String, price: Int, pictureLink: String) -> Unit
 ) : RecyclerView.Adapter<ListGoodsAdapter.ProductHolder>() {
 
     private var productList: List<Product> = mutableListOf()
@@ -25,12 +25,15 @@ class ListGoodsAdapter(
 
     override fun onBindViewHolder(holder: ProductHolder, position: Int) {
         val currentItem = productList[position]
-        holder.titleProduct.text = currentItem.name
-        holder.vendorCodeProduct.text = currentItem.gcode.toString()
-        holder.priceProduct.text = currentItem.price.toString()
+        holder.titleProductTV.text = currentItem.name
+        holder.vendorCodeProductTV.text = currentItem.gcode.toString()
+        holder.priceProductTV.text = currentItem.price.toString()
 
+        holder.priceProduct = currentItem.price
+        holder.vendorCode = currentItem.gcode
+        holder.pictureLink= ("https://vimos.ru/" + currentItem.img_preview)
         Glide.with(holder.itemView)
-            .load("https://vimos.ru/" + currentItem.img_preview)
+            .load(holder.pictureLink)
             .placeholder(R.drawable.ic_broken_image)
             .into(holder.imageProduct)
     }
@@ -44,17 +47,24 @@ class ListGoodsAdapter(
 
     class ProductHolder(
         itemView: View,
-        onItemClick: (gcode: Long) -> Unit
+        onItemClick: (gcode: Long, title: String, price: Int, pictureLink: String) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
-        val titleProduct: TextView = itemView.titleProductTextView
-        val priceProduct: TextView = itemView.priceProductTextView
-        val vendorCodeProduct: TextView = itemView.vendorCodeProductTextView
+        val titleProductTV: TextView = itemView.titleProductTextView
+        val priceProductTV: TextView = itemView.priceProductTextView
+        val vendorCodeProductTV: TextView = itemView.vendorCodeProductTextView
         val imageProduct: ImageView = itemView.pictureProductImageView
+
+        var priceProduct: Int = 0
+        var vendorCode: Long = 0
+        var pictureLink: String = ""
 
         init {
             itemView.setOnClickListener {
                 onItemClick(
-                    vendorCodeProduct.text.toString().toLong()
+                    vendorCode,
+                    titleProductTV.text.toString(),
+                    priceProduct,
+                    pictureLink
                 )
             }
         }

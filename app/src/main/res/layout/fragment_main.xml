@@ -9,7 +9,6 @@
         android:id="@+id/moveToCatalogButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/move_to_catalog"
-        />
+        android:text="@string/move_to_catalog" />
 
 </LinearLayout>
